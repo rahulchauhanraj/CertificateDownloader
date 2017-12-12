@@ -14,22 +14,18 @@ public class CertificateDownloader {
 
     public static void main (String[] args) throws Exception {
         String tempPath = System.getenv("TEMP");
-        testConnectionTo(tempPath, "https://tenancy-stuf-stufrc.apm.aws-usw02-pr.predix.io", "tenant-cert");
-        testConnectionTo(tempPath, "https://apm-asset-svc-rc.int-app.aws-usw02-pr.predix.io", "asset-cert");
-        testConnectionTo(tempPath, "https://config-stuf-stufrc.apm.aws-usw02-pr.predix.io", "stuf-cert");
-        testConnectionTo(tempPath, "https://apm-templates-svc-rc.int-app.aws-usw02-pr.predix.io", "template-cert");
-        testConnectionTo(tempPath, "https://apm-alarms-svc-rc.int-app.aws-usw02-pr.predix.io", "alarm-cert");
-        testConnectionTo(tempPath, "https://apm-blob-storage-svc-rc.int-app.aws-usw02-pr.predix.io", "blob-cert");
+        testConnectionTo(tempPath, "https://abc.com", "abc-cert");
     }
 
     public static void testConnectionTo(String path, String aURL, String certName) throws Exception {
         String filePath = path + "\\" + certName;
         URL destinationURL = new URL(aURL);
-        System.setProperty("https.proxyHost","http-proxy.corporate.ge.com");
+        String proxyHost = "proxyhost.com";
+        System.setProperty("https.proxyHost",proxyHost);
         System.setProperty("https.proxyPort","80");
-        System.setProperty("http.proxyHost","http-proxy.corporate.ge.com");
+        System.setProperty("http.proxyHost",proxyHost);
         System.setProperty("http.proxyPort","80");
-        InetSocketAddress proxyInet = new InetSocketAddress("http-proxy.corporate.ge.com",80);
+        InetSocketAddress proxyInet = new InetSocketAddress(proxyHost,80);
         Proxy proxy = new Proxy(Proxy.Type.HTTP, proxyInet);
         HttpsURLConnection conn = (HttpsURLConnection) destinationURL.openConnection(proxy);
         conn.connect();
