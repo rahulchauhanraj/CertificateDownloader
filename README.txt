@@ -8,4 +8,8 @@ and execute below command to add it in java home.
 
 4.	Give permission to JAVA_HOME folder to the current user to execute keytool command without administrator permission.
 
-5. 	Execute CertificateDownloader.java file to download and execute certificate installer.  
+5. 	Execute CertificateDownloader.java file to download and execute certificate installer.
+
+6.	Validate certificate by running below command 
+	
+	keytool -list -storepass changeit -keystore "%JAVA_HOME%/jre/lib/security/cacerts" | findstr <certificate-alias>  
