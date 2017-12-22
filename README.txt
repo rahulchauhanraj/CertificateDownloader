@@ -1,4 +1,4 @@
-1.	download certificate for https://abc.com from mozilla firfox. and save with the name install-abc-cert
+1.	download certificate for host (like https://abc.com) from mozilla firfox. and save with the name install-abc-cert
 
 and execute below command to add it in java home.
 
